@@ -1,5 +1,4 @@
 package git.challenge;
-
 import java.util.Date;
 
 public class Book {
@@ -67,4 +66,5 @@ public class Book {
     public void setPublisher(String publisher) {
         this.publisher = publisher;
     }
+
 }
