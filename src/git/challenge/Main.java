@@ -8,6 +8,7 @@ import java.util.Scanner;
 public class Main {
 
     private static Scanner op = new Scanner(System.in);
+    public static File bookColl = new File("endava_library.txt");
 
     public static void main(String[] args) throws IOException, ClassNotFoundException {
 
@@ -52,25 +53,50 @@ public class Main {
     public static void addBook(){
         Scanner input = new Scanner(System.in);
         Book newBook = new Book();
-        Book newBook2 = new Book(); //del
-        Book newBook3 = new Book(); //del
+        //Book newBook2 = new Book(); //del
+        //Book newBook3 = new Book(); //del
 
-        //Asks the user for the new book's info
-        /*System.out.print("Type the name of the new book you want to add: ");
-        newBook.setName(input.nextLine());
-        System.out.print("Type the book's author: ");
-        newBook.setAuthor(input.nextLine());
-        System.out.print("Type the book's ISBN number: ");
-        newBook.setIsbn(input.nextLine());
-        System.out.print("Type the book's published date: ");
-        newBook.setPublishedDate(input.nextLine());
-        System.out.print("Type the book's language: ");
-        newBook.setLanguage(input.nextLine());
-        System.out.print("Type the book's publisher: ");
-        newBook.setPublisher(input.nextLine());
-        System.out.println("");*/
+        ArrayList<Book> b = new ArrayList<>();
+        ArrayList<Book> bookTest = new ArrayList<>();
 
-        newBook.setName("Cien Años de Soledad");
+
+        if (bookColl.length() == 0) {
+            //Asks the user for the new book's info
+            System.out.print("Type the name of the new book you want to add: ");
+            newBook.setName(input.nextLine());
+            System.out.print("Type the book's author: ");
+            newBook.setAuthor(input.nextLine());
+            System.out.print("Type the book's ISBN number: ");
+            newBook.setIsbn(input.nextLine());
+            System.out.print("Type the book's published date: ");
+            newBook.setPublishedDate(input.nextLine());
+            System.out.print("Type the book's language: ");
+            newBook.setLanguage(input.nextLine());
+            System.out.print("Type the book's publisher: ");
+            newBook.setPublisher(input.nextLine());
+            System.out.println("");
+
+            bookTest.add(newBook);
+            writeFile(bookTest, bookColl);
+        } else {
+            bookTest = readFile(bookColl);
+            System.out.print("Type the name of the new book you want to add: ");
+            newBook.setName(input.nextLine());
+            System.out.print("Type the book's author: ");
+            newBook.setAuthor(input.nextLine());
+            System.out.print("Type the book's ISBN number: ");
+            newBook.setIsbn(input.nextLine());
+            System.out.print("Type the book's published date: ");
+            newBook.setPublishedDate(input.nextLine());
+            System.out.print("Type the book's language: ");
+            newBook.setLanguage(input.nextLine());
+            System.out.print("Type the book's publisher: ");
+            newBook.setPublisher(input.nextLine());
+            System.out.println("");
+            bookTest.add(newBook);
+            writeFile(bookTest, bookColl);
+        }
+        /*newBook.setName("Cien Años de Soledad");
         newBook.setAuthor("Gabriel García Marquez");
         newBook.setIsbn("1234");
         newBook.setPublishedDate("16/04/1998");
@@ -89,22 +115,32 @@ public class Main {
         newBook3.setIsbn("2331");
         newBook3.setPublishedDate("16/04/1998");
         newBook3.setLanguage("Spanish");
-        newBook3.setPublisher("Penguin");
+        newBook3.setPublisher("Penguin");*/
+
+        /*b.add(newBook);
+        b.add(newBook2);
+        b.add(newBook3);*/
+
+        //writeFile(b, bookColl);
+
+        /*for (int i = 0; i < b.size(); i++) {
+            writeFile(b.get(i), bookColl);
+        }*/
 
         //Stores the object with the info provided by the user in a file called 'endava_library.txt'
-        try {
-            FileOutputStream fos = new FileOutputStream(new File("endava_library.txt"), true);
+        /*try {
+            FileOutputStream fos = new FileOutputStream(bookColl);
             ObjectOutputStream oos = new ObjectOutputStream(fos);
-            oos.writeObject(newBook);
-            oos.writeObject(newBook2);
-            oos.writeObject(newBook3);
+            oos.writeObject(b);
+            //oos.writeObject(newBook2);
+            //oos.writeObject(newBook3);
             oos.close();
             fos.close();
         } catch (FileNotFoundException e) {
             System.out.println("File not found or does not exists!");
         } catch (IOException e) {
             System.out.println("Error initializing stream!");
-        }
+        }*/
 
         System.out.println("Book successfully added!");
         System.out.println();
@@ -114,24 +150,23 @@ public class Main {
         //Book[] bookArray = new Book[5];
         Scanner input = new Scanner(System.in);
         ArrayList<Book> books = new ArrayList<Book>();
-        try {
-            BufferedReader br = new BufferedReader(new FileReader("endava_library.txt"));
-            FileInputStream fis = new FileInputStream(new File("endava_library.txt"));
-            ObjectInputStream ois = new ObjectInputStream(fis);
-            //books = (ArrayList<Book>) ois.readObject();
+        /*BufferedReader br = new BufferedReader(new FileReader("endava_library.txt"));
+        FileInputStream fis = new FileInputStream(new File("endava_library.txt"));
+        ObjectInputStream ois = new ObjectInputStream(fis);*/
+        //books = (ArrayList<Book>) ois.readObject();
             /*Book b1 = (Book) ois.readObject();
             Book b2 = (Book) ois.readObject();
             Book b3 = (Book) ois.readObject();
             System.out.println(b1.getName());
             System.out.println(b2.getName());
             System.out.println(b3.getName());*/
-            String line;
-            //Book tmp = new Book();
-            books = readFile(new File("endava_library.txt"));
-            System.out.println("The ArrayList size is: " + books.size());
-            Boolean flag = true;
-            //Book tmp = null;
-            //System.out.println("Bytes available: " + ois.available());
+        String line;
+        //Book tmp = new Book();
+        books = readFile(bookColl);
+        System.out.println("The ArrayList size is: " + books.size());
+        Boolean flag = true;
+        //Book tmp = null;
+        //System.out.println("Bytes available: " + ois.available());
             /*while (flag) {
                 if (fis.available() != 0) {
                     tmp = (Book) ois.readObject();
@@ -164,30 +199,25 @@ public class Main {
             for (int i = 0; i < a.length; i++) {
                 System.out.println(a[i].getName());
             }*/
-            System.out.println(books.size());
-            System.out.println("Please type the book's name: ");
-            String bName = input.nextLine();
-            Iterator<Book> itr = books.iterator();
-            while(itr.hasNext()) {
-                Book tmpBook = itr.next();
-                if (tmpBook.getName().equals(bName)) {
-                    System.out.println(tmpBook.getAuthor());
-                    System.out.println(tmpBook.getIsbn());
-                    System.out.println(tmpBook.getPublishedDate());
-                    System.out.println(tmpBook.getLanguage());
-                    System.out.println(tmpBook.getPublisher());
-                    break;
-                } else {
-                    //System.out.println("The book does not exists!");
-                }
+        System.out.println(books.size());
+        System.out.println("Please type the book's name: ");
+        String bName = input.nextLine();
+        Iterator<Book> itr = books.iterator();
+        while(itr.hasNext()) {
+            Book tmpBook = itr.next();
+            if (tmpBook.getName().equals(bName)) {
+                System.out.println(tmpBook.getAuthor());
+                System.out.println(tmpBook.getIsbn());
+                System.out.println(tmpBook.getPublishedDate());
+                System.out.println(tmpBook.getLanguage());
+                System.out.println(tmpBook.getPublisher());
+                break;
+            } else {
+                //System.out.println("The book does not exists!");
             }
-            ois.close();
-            fis.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
         }
+        //ois.close();
+        //fis.close();
         //Asks the user for the name of the book they want info about
     }
 
@@ -224,8 +254,18 @@ public class Main {
         return currBooks;
     }
 
-    public static void writeFile() {
-
+    public static void writeFile(ArrayList<Book> b, File file) {
+        try {
+            FileOutputStream fos = new FileOutputStream(file);
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            for (int i = 0; i < b.size(); i++) {
+                oos.writeObject(b.get(i));
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }
