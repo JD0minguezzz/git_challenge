@@ -23,7 +23,6 @@ public class Main {
             System.out.println("4. Delete a book.");
             System.out.println("5. Exit.");
             System.out.println();
-
             System.out.print("Select an option: ");
             int option = op.nextInt();
             System.out.println("");
