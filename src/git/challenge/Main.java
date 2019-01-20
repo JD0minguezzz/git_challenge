@@ -56,7 +56,7 @@ public class Main {
         Book newBook3 = new Book(); //del
 
         //Asks the user for the new book's info
-        System.out.print("Type the name of the new book you want to add: ");
+        /*System.out.print("Type the name of the new book you want to add: ");
         newBook.setName(input.nextLine());
         System.out.print("Type the book's author: ");
         newBook.setAuthor(input.nextLine());
@@ -68,9 +68,9 @@ public class Main {
         newBook.setLanguage(input.nextLine());
         System.out.print("Type the book's publisher: ");
         newBook.setPublisher(input.nextLine());
-        System.out.println("");
+        System.out.println("");*/
 
-        /*newBook.setName("Cien Años de Soledad");
+        newBook.setName("Cien Años de Soledad");
         newBook.setAuthor("Gabriel García Marquez");
         newBook.setIsbn("1234");
         newBook.setPublishedDate("16/04/1998");
@@ -89,15 +89,15 @@ public class Main {
         newBook3.setIsbn("2331");
         newBook3.setPublishedDate("16/04/1998");
         newBook3.setLanguage("Spanish");
-        newBook3.setPublisher("Penguin");*/
+        newBook3.setPublisher("Penguin");
 
         //Stores the object with the info provided by the user in a file called 'endava_library.txt'
         try {
             FileOutputStream fos = new FileOutputStream(new File("endava_library.txt"), true);
             ObjectOutputStream oos = new ObjectOutputStream(fos);
             oos.writeObject(newBook);
-            //oos.writeObject(newBook2);
-            //oos.writeObject(newBook3);
+            oos.writeObject(newBook2);
+            oos.writeObject(newBook3);
             oos.close();
             fos.close();
         } catch (FileNotFoundException e) {
@@ -168,15 +168,16 @@ public class Main {
             Iterator<Book> itr = books.iterator();
             while(itr.hasNext()) {
                 Book tmpBook = itr.next();
-                //if (tmpBook.getName() == bName) {
+                if (tmpBook.getName().equals(bName)) {
                     System.out.println(tmpBook.getAuthor());
                     System.out.println(tmpBook.getIsbn());
                     System.out.println(tmpBook.getPublishedDate());
                     System.out.println(tmpBook.getLanguage());
                     System.out.println(tmpBook.getPublisher());
-                //} else {
+                    break;
+                } else {
                     //System.out.println("The book does not exists!");
-                //}
+                }
             }
             ois.close();
             fis.close();
