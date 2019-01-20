@@ -127,10 +127,12 @@ public class Main {
             System.out.println(b3.getName());*/
             String line;
             //Book tmp = new Book();
+            books = readFile(new File("endava_library.txt"));
+            System.out.println("The ArrayList size is: " + books.size());
             Boolean flag = true;
-            Book tmp = null;
+            //Book tmp = null;
             //System.out.println("Bytes available: " + ois.available());
-            while (flag) {
+            /*while (flag) {
                 if (fis.available() != 0) {
                     tmp = (Book) ois.readObject();
                     books.add(tmp);
@@ -150,8 +152,8 @@ public class Main {
                     books.add(tmp);
                 } else {
                     flag = false;
-                }*/
-            }
+                }
+            }*/
             /*Iterator<Book> itr = books.iterator();
             while(itr.hasNext()) {
                 Book tmpBook = itr.next();
@@ -185,8 +187,6 @@ public class Main {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
         }
         //Asks the user for the name of the book they want info about
     }
@@ -199,8 +199,29 @@ public class Main {
 
     }
 
-    public static void readFile() {
-
+    public static ArrayList<Book> readFile(File file) {
+        ArrayList<Book> currBooks = new ArrayList<>();
+        Boolean flag = true;
+        try {
+            FileInputStream fis = new FileInputStream(file);
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            Book tmp = null;
+            while (flag) {
+                if (fis.available() != 0) {
+                    tmp = (Book) ois.readObject();
+                    currBooks.add(tmp);
+                } else {
+                    flag = false;
+                }
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return currBooks;
     }
 
     public static void writeFile() {
