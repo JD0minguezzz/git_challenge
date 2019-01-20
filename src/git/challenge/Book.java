@@ -1,13 +1,14 @@
 package git.challenge;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Book {
+public class Book implements Serializable {
 
     private String name;
     private String author;
     private String isbn;
-    private Date publishedDate;
+    private String publishedDate;
     private String language;
     private String publisher;
 
@@ -44,11 +45,11 @@ public class Book {
         this.isbn = isbn;
     }
 
-    public Date getPublishedDate() {
+    public String getPublishedDate() {
         return publishedDate;
     }
 
-    public void setPublishedDate(Date publishedDate) {
+    public void setPublishedDate(String publishedDate) {
         this.publishedDate = publishedDate;
     }
 
