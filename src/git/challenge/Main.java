@@ -21,6 +21,7 @@ public class Main {
         while(flag){
             System.out.println("********Endava Library********");
             System.out.println("1. Add a new book.");
+            System.out.println("2. Search a book. ");
             System.out.println("3. Update a book.");
             System.out.println("4. Delete a book.");
             System.out.println("5. Exit.");
@@ -206,7 +207,46 @@ public class Main {
     }
 
     public static void deleteBook() {
+        Scanner input = new Scanner(System.in);
+        ArrayList<Book> books = new ArrayList<>();
 
+        if (bookColl.length() == 0) {
+            System.out.println("There are no books registered!");
+        } else {
+            books = readFile(bookColl);
+
+            System.out.print("Please type the name of the book you want to delete: ");
+            String bName = input.nextLine();
+            System.out.println("");
+            Iterator<Book> itr = books.iterator();
+            while (itr.hasNext()) {
+                Book tmpBook = itr.next();
+                if (tmpBook.getName().equals(bName)) {
+                    System.out.println("Are you sure you want to delete the specified book?");
+                    System.out.println("");
+                    System.out.println("Yes (Y)");
+                    System.out.println("No (N)");
+                    System.out.println("");
+                    System.out.print("Select an option: ");
+                    String op = input.nextLine();
+                    System.out.println("");
+                    if (op.equals("Y")) {
+                        //books.remove(tmpBook);
+                        itr.remove();
+                        writeFile(books, bookColl);
+                        System.out.println(bName + " successfully removed!");
+                        System.out.println("");
+                    } else {
+                        System.out.println(tmpBook.getName() + " enot deleted!");
+                        System.out.println("");
+                    }
+                    break;
+                } if (!itr.hasNext()) {
+                    System.out.println("The specified book does not exists!");
+                    System.out.println("");
+                }
+            }
+        }
     }
 
     public static ArrayList<Book> readFile(File file) {
