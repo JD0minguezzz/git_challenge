@@ -131,7 +131,44 @@ public class Main {
     }
 
     public static void updateBookInfo() {
+        Scanner input = new Scanner(System.in);
+        ArrayList<Book> books = new ArrayList<>();
 
+        if (bookColl.length() == 0) {
+            System.out.println("There are no books registered!");
+        } else {
+            books = readFile(bookColl);
+
+            System.out.print("Please type the name of the book you want to update: ");
+            String bName = input.nextLine();
+            System.out.println("");
+            Iterator<Book> itr = books.iterator();
+            while(itr.hasNext()) {
+                Book tmpBook = itr.next();
+                if (tmpBook.getName().equals(bName)) {
+                    System.out.println("Which field you would like to update?");
+                    System.out.println("");
+                    System.out.println("1. Author.");
+                    System.out.println("2. ISBN.");
+                    System.out.println("3. Published date.");
+                    System.out.println("4. Language.");
+                    System.out.println("5. Publisher.");
+                    System.out.println("");
+                    System.out.print("Select a field: ");
+                    int field = input.nextInt();
+                    System.out.println("");
+
+                    switch (field) {
+                        case 1:
+                            
+                    }
+                    break;
+                } if (!itr.hasNext()) {
+                    System.out.println("The specified book does not exists!");
+                    System.out.println("");
+                }
+            }
+        }
     }
 
     public static void deleteBook() {
