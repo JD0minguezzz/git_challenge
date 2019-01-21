@@ -155,12 +155,46 @@ public class Main {
                     System.out.println("5. Publisher.");
                     System.out.println("");
                     System.out.print("Select a field: ");
-                    int field = input.nextInt();
+                    String field = input.nextLine();
+                    //String updateField = "";
                     System.out.println("");
 
                     switch (field) {
-                        case 1:
-                            
+                        case "1":
+                            System.out.print("Type the updated author : ");
+                            tmpBook.setAuthor(input.nextLine());
+                            System.out.println("");
+                            System.out.println("Book successfully updated!");
+                            System.out.println("");
+                            break;
+                        case "2":
+                            System.out.print("Type the updated ISBN number: ");
+                            tmpBook.setIsbn(input.nextLine());
+                            System.out.println("");
+                            System.out.print("Book successfully updated!");
+                            System.out.println("");
+                            break;
+                        case "3":
+                            System.out.print("Type the updated published date: ");
+                            tmpBook.setPublishedDate(input.nextLine());
+                            System.out.println("");
+                            System.out.println("Book successfully updated!");
+                            System.out.println("");
+                            break;
+                        case "4":
+                            System.out.print("Type the updated language: ");
+                            tmpBook.setLanguage(input.nextLine());
+                            System.out.println("");
+                            System.out.println("Book successfully updated!");
+                            System.out.println("");
+                            break;
+                        case "5":
+                            System.out.print("Type the updated publisher: ");
+                            tmpBook.setPublisher(input.nextLine());
+                            System.out.println("");
+                            System.out.println("Book successfully updated!");
+                            System.out.println("");
+                            break;
                     }
                     break;
                 } if (!itr.hasNext()) {
@@ -168,6 +202,7 @@ public class Main {
                     System.out.println("");
                 }
             }
+            writeFile(books, bookColl);
         }
     }
 
