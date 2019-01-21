@@ -237,7 +237,7 @@ public class Main {
                         System.out.println(bName + " successfully removed!");
                         System.out.println("");
                     } else {
-                        System.out.println(tmpBook.getName() + " enot deleted!");
+                        System.out.println(tmpBook.getName() + " not deleted!");
                         System.out.println("");
                     }
                     break;
